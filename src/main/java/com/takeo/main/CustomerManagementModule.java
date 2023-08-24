@@ -5,6 +5,8 @@ import com.takeo.model.Customer;
 
 import java.util.*;
 
+import static com.takeo.main.PolicyManagementModule.scanner;
+
 public class CustomerManagementModule {
 
     public static Map<Integer, Customer> customerList = new HashMap<>();
@@ -115,6 +117,19 @@ public class CustomerManagementModule {
             return true;
         }
         return check;
+    }
+    public Boolean customerLogin() {
+        System.out.println("Enter id:");
+        int id = scanner.nextInt();
+        System.out.println("Enter password:");
+        String pass = scanner.next();
+        Customer customer = customerList.get(id);
+        if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
+            System.out.println("Login successfully");
+            return true;
+        }
+
+      return false;
     }
 
 }

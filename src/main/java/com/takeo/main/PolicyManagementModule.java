@@ -24,7 +24,7 @@ public class PolicyManagementModule {
         }
         return "P" + randomNum;
     }
-    public void userInput(){
+    public void addPolicy(){
 
         System.out.println("Customer ID:");
         int id = scanner.nextInt();
@@ -44,14 +44,14 @@ public class PolicyManagementModule {
             String startDate = today.format(formatter);
             String expirationDates = expirationDate.format(formatter);
             Policy policy = new Policy(id,policyType,startDate,expirationDates);
-            addPolicy(policy);
+            savePolicy(policy);
         }else {
             System.out.println("No matched id found");
         }
 
 
     }
-    public void addPolicy(Policy policy) {
+    public void savePolicy(Policy policy) {
         String policyId = generateRandom();
         policy.setPolicyNumber(policyId);
         policyList.put(policyId,policy);

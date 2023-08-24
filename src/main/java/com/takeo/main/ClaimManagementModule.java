@@ -40,13 +40,13 @@ public class ClaimManagementModule {
         return false;
     }
 
-    public void addClaim(Claim claim) {
+    public void saveClaim(Claim claim) {
         String claimNum = generateRandom();
         claim.setClaimNumber(claimNum);
         claimList.put(claimNum, claim);
     }
 
-    public void userInput() {
+    public void fileClaim() {
 
         System.out.println("Enter Id:");
         int id = scanner.nextInt();
@@ -59,7 +59,7 @@ public class ClaimManagementModule {
             System.out.println("Enter claim amount: ");
             int claimAmt = scanner.nextInt();
             Claim claim = new Claim(id, policyNum, claimAmt, dateFilled, claimStatus);
-            addClaim(claim);
+            saveClaim(claim);
             System.out.println("Claim filled successfully \nClaim number : " + claim.getClaimNumber());
         } else {
             System.out.println("Invalid information");
