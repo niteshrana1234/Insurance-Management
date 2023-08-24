@@ -1,27 +1,34 @@
 package com.takeo.model;
 
 
-
 public class Claim {
-    private String customerId;
+    private int customerId;
 
     private String policyNumber;
     private String claimNumber;
     private String dateFilled;
+
+    private int claimAmount;
     boolean claimStatus = false;
 
-    public Claim(String customerId, String policyNumber, String dateFilled, boolean claimStatus) {
+    public Claim() {
+    }
+
+    ;
+
+    public Claim(int customerId, String policyNumber, int claimAmount, String dateFilled, boolean claimStatus) {
         this.customerId = customerId;
         this.policyNumber = policyNumber;
         this.dateFilled = dateFilled;
         this.claimStatus = claimStatus;
+        this.claimAmount = claimAmount;
     }
 
-    public String getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -49,11 +56,19 @@ public class Claim {
         this.dateFilled = dateFilled;
     }
 
-    public boolean isClaimStatus() {
+    public boolean getClaimStatus() {
         return claimStatus;
     }
 
     public void setClaimStatus(boolean claimStatus) {
         this.claimStatus = claimStatus;
+    }
+
+    public int getClaimAmount() {
+        return claimAmount;
+    }
+
+    public void setClaimAmount(int claimAmount) {
+        this.claimAmount = claimAmount;
     }
 }

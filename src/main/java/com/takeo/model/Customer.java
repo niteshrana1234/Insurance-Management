@@ -13,20 +13,22 @@ public class Customer {
     private String dateOfBirth;
     private String emailAddress;
     private Address address;
-    private PolicyManagementModule policyManagementModule;
+    private String password;
+
 
 
     public Customer() {
     }
 
-    public Customer(String fullName, String phoneNumber, String dateOfBirth, Address address) {
+    public Customer(String fullName, String phoneNumber, String dateOfBirth, Address address,String password) {
         this.customerId = nextId++;
         this.fullName = fullName;
         this.customerId = customerId;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.policyManagementModule = new PolicyManagementModule();
+        this.password = password;
+
     }
 
     public String getFullName() {
@@ -75,6 +77,14 @@ public class Customer {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

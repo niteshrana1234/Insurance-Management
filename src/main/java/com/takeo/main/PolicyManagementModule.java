@@ -12,7 +12,7 @@ public class PolicyManagementModule {
     LocalDate expirationDate = today.plusYears(1);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     static Scanner scanner = new Scanner(System.in);
-    Map<String,Policy> policyList = new HashMap<>();
+   public static Map<String,Policy> policyList = new HashMap<>();
     CustomerManagementModule customerManagementModule = new CustomerManagementModule();
 
     public String generateRandom(){
@@ -28,22 +28,27 @@ public class PolicyManagementModule {
 
         System.out.println("Customer ID:");
         int id = scanner.nextInt();
-        System.out.println("Pick a policy type, Enter a number:");
-        System.out.println("1.Home insurance \n2.Auto insurance \n3.Health insurance");
-        String policyType = "";
-        int input = scanner.nextInt();
-        if(input == 1){
-            policyType = "Home";
-        } else if(input == 2){
-            policyType = "Auto";
+        if(verifyPolicy(id)){
+            System.out.println("Pick a policy type, Enter a number:");
+            System.out.println("1.Home insurance \n2.Auto insurance \n3.Health insurance");
+            String policyType = "";
+            int input = scanner.nextInt();
+            if(input == 1){
+                policyType = "Home";
+            } else if(input == 2){
+                policyType = "Auto";
+            }
+            else if(input == 3){
+                policyType = "Health";
+            }
+            String startDate = today.format(formatter);
+            String expirationDates = expirationDate.format(formatter);
+            Policy policy = new Policy(id,policyType,startDate,expirationDates);
+            addPolicy(policy);
+        }else {
+            System.out.println("No matched id found");
         }
-        else if(input == 3){
-            policyType = "Health";
-        }
-        String startDate = today.format(formatter);
-        String expirationDates = expirationDate.format(formatter);
-        Policy policy = new Policy(id,policyType,startDate,expirationDates);
-        addPolicy(policy);
+
 
     }
     public void addPolicy(Policy policy) {
@@ -53,15 +58,56 @@ public class PolicyManagementModule {
         System.out.println("Policy ID : "+policyId + ", Policy type : "+ policy.getPolicyType());
     }
 
-    public void removePolicy(String policyNum) {
-        Iterator <Map.Entry<String,Policy>> iterator = policyList.entrySet().iterator();
-        while(iterator.hasNext()){
-            Policy policy = iterator.next().getValue();
-            if(policy.getPolicyNumber().equals(policyNum)){
-                iterator.remove();
-                return;
+    public void modifyPolicy() {
+        System.out.println("Customer ID:");
+        int id = scanner.nextInt();
+        System.out.println("Enter policy Number: ");
+        String policyNum = scanner.next();
+        if (verifyPolicy(id)) {
+            System.out.println("Pick a policy type, Enter a number:");
+            System.out.println("1.Home insurance \n2.Auto insurance \n3.Health insurance");
+            String policyType = "";
+            int input = scanner.nextInt();
+            if (input == 1) {
+                policyType = "Home";
+            } else if (input == 2) {
+                policyType = "Auto";
+            } else if (input == 3) {
+                policyType = "Health";
             }
+            Iterator <Map.Entry<String,Policy>> iterator = policyList.entrySet().iterator();
+            while(iterator.hasNext()){
+                Policy policy = iterator.next().getValue();
+                if(policy.getPolicyNumber().equals(policyNum)){
+                    policy.setPolicyType(policyType);
+                    break;
+                }
+            }
+
         }
+        else{
+            System.out.println("No match policy found");
+        }
+    }
+
+    public void removePolicy() {
+        System.out.println("Enter customer id: ");
+        int id = scanner.nextInt();
+        System.out.println("Enter policy Number: ");
+        String policyNum = scanner.next();
+        if(verifyPolicy(id)){
+            Iterator <Map.Entry<String,Policy>> iterator = policyList.entrySet().iterator();
+            while(iterator.hasNext()){
+                Policy policy = iterator.next().getValue();
+                if(policy.getPolicyNumber().equals(policyNum)){
+                    iterator.remove();
+                    break;
+                }
+            }
+        } else {
+            System.out.println("No matched policy found with given information");
+        }
+
     }
 
     public void displayPolicies() {
@@ -75,4 +121,16 @@ public class PolicyManagementModule {
 
     }
 
+    public Boolean verifyPolicy(int id) {
+        Customer customer = CustomerManagementModule.customerList.get(id);
+
+        if (customer!=null) {
+            String name = customer.getFullName();
+            System.out.println("You're verified Mr/s." + name);
+            return true;
+        } else {
+            System.out.println("Invalid information!!");
+        }
+        return false;
+    }
 }

@@ -28,7 +28,9 @@ public class CustomerManagementModule {
         System.out.print("Enter email address:");
         String emailAddress = scanner.nextLine();
         Address address = custom.addressInput();
-        return new Customer(name, phoneNumber, dateOfBirth, address);
+        System.out.println("Set password:");
+        String password = scanner.nextLine();
+        return new Customer(name, phoneNumber, dateOfBirth, address,password);
 
     }
 
@@ -73,23 +75,28 @@ public class CustomerManagementModule {
 
         System.out.println("Enter Customer ID:");
         int input = scanner.nextInt();
-        Customer selectClient = customerList.get(input);
-        scanner.nextLine();
-        System.out.println("\u001B[4mChange Of Information\u001B[0m ");
-        System.out.print("Enter full name:");
-        String name = scanner.nextLine();
-        selectClient.setFullName(name);
-        System.out.print("Enter phone number:");
-        String phoneNumber = scanner.nextLine();
-        selectClient.setPhoneNumber(phoneNumber);
-        System.out.print("Enter date of birth(DDMMYYYY):");
-        String dateOfBirth = scanner.nextLine();
-        selectClient.setDateOfBirth(dateOfBirth);
-        System.out.print("Enter email address:");
-        String emailAddress = scanner.nextLine();
-        selectClient.setEmailAddress(emailAddress);
-        Address address = addressInput();
-        selectClient.setAddress(address);
+        if(verifyCustomer(input)){
+            Customer selectClient = customerList.get(input);
+            scanner.nextLine();
+            System.out.println("\u001B[4mChange Of Information\u001B[0m ");
+            System.out.print("Enter full name:");
+            String name = scanner.nextLine();
+            selectClient.setFullName(name);
+            System.out.print("Enter phone number:");
+            String phoneNumber = scanner.nextLine();
+            selectClient.setPhoneNumber(phoneNumber);
+            System.out.print("Enter date of birth(DDMMYYYY):");
+            String dateOfBirth = scanner.nextLine();
+            selectClient.setDateOfBirth(dateOfBirth);
+            System.out.print("Enter email address:");
+            String emailAddress = scanner.nextLine();
+            selectClient.setEmailAddress(emailAddress);
+            Address address = addressInput();
+            selectClient.setAddress(address);
+        } else{
+            System.out.println("No matched ID found");
+        }
+
     }
 
     public void listOfCustomer() {
