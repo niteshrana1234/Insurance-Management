@@ -124,12 +124,13 @@ public class CustomerManagementModule {
         System.out.println("Enter password:");
         String pass = scanner.next();
         Customer customer = customerList.get(id);
-        if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
-            System.out.println("Login successfully");
-            return true;
+        if(customer!=null){
+            if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
+                System.out.println("Login successfully");
+                return true;
         }
-
-      return false;
+        }
+            return false;
     }
 
 }
