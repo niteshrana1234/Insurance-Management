@@ -20,7 +20,7 @@ public class CustomerManagementModule {
     public Customer customerInput() {
         CustomerManagementModule custom = new CustomerManagementModule();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\u001B[4mPersonal information:\u001B[0m ");
+        System.out.println("\n\u001B[4mPersonal information:\u001B[0m ");
         System.out.print("Enter full name:");
         String name = scanner.nextLine();
         System.out.print("Enter phone number:");
@@ -30,7 +30,7 @@ public class CustomerManagementModule {
         System.out.print("Enter email address:");
         String emailAddress = scanner.nextLine();
         Address address = custom.addressInput();
-        System.out.println("Set password:");
+        System.out.print("Set password:");
         String password = scanner.nextLine();
         return new Customer(name, phoneNumber, dateOfBirth, address,password);
 
@@ -60,7 +60,7 @@ public class CustomerManagementModule {
 
     public void removeCustomer() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Customer Id:");
+        System.out.print("\nEnter Customer Id:");
         int input = scanner.nextInt();
         if(verifyCustomer(input)){
             Customer selectedCustomer = customerList.get(input);
@@ -75,7 +75,7 @@ public class CustomerManagementModule {
     public void modifyCustomerInfo() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter Customer ID:");
+        System.out.println("\nEnter Customer ID:");
         int input = scanner.nextInt();
         if(verifyCustomer(input)){
             Customer selectClient = customerList.get(input);
@@ -119,14 +119,14 @@ public class CustomerManagementModule {
         return check;
     }
     public Boolean customerLogin() {
-        System.out.println("Enter id:");
+        System.out.print("\nEnter id:");
         int id = scanner.nextInt();
-        System.out.println("Enter password:");
+        System.out.print("Enter password:");
         String pass = scanner.next();
         Customer customer = customerList.get(id);
         if(customer!=null){
             if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
-                System.out.println("Login successfully");
+                System.out.println("Login successful!!");
                 return true;
         }
         }

@@ -26,7 +26,7 @@ public class PolicyManagementModule {
     }
     public void addPolicy(){
 
-        System.out.println("Customer ID:");
+        System.out.print("\nCustomer ID:");
         int id = scanner.nextInt();
         if(verifyPolicy(id)){
             System.out.println("Pick a policy type, Enter a number:");
@@ -55,15 +55,14 @@ public class PolicyManagementModule {
         String policyId = generateRandom();
         policy.setPolicyNumber(policyId);
         policyList.put(policyId,policy);
+        System.out.println("Successfully added new policy");
         System.out.println("Policy ID : "+policyId + ", Policy type : "+ policy.getPolicyType());
     }
 
     public void modifyPolicy() {
-        System.out.println("Customer ID:");
-        int id = scanner.nextInt();
-        System.out.println("Enter policy Number: ");
+        System.out.print("Enter policy Number: ");
         String policyNum = scanner.next();
-        if (verifyPolicy(id)) {
+        if (verifyPolicy(policyNum)) {
             System.out.println("Pick a policy type, Enter a number:");
             System.out.println("1.Home insurance \n2.Auto insurance \n3.Health insurance");
             String policyType = "";
@@ -91,11 +90,9 @@ public class PolicyManagementModule {
     }
 
     public void removePolicy() {
-        System.out.println("Enter customer id: ");
-        int id = scanner.nextInt();
-        System.out.println("Enter policy Number: ");
+        System.out.print("Enter policy Number: ");
         String policyNum = scanner.next();
-        if(verifyPolicy(id)){
+        if(verifyPolicy(policyNum)){
             Iterator <Map.Entry<String,Policy>> iterator = policyList.entrySet().iterator();
             while(iterator.hasNext()){
                 Policy policy = iterator.next().getValue();
@@ -121,16 +118,55 @@ public class PolicyManagementModule {
 
     }
 
-    public Boolean verifyPolicy(int id) {
-        Customer customer = CustomerManagementModule.customerList.get(id);
+    public Boolean verifyPolicy(String policyNum) {
+      Policy policy = policyList.get(policyNum);
 
-        if (customer!=null) {
-            String name = customer.getFullName();
-            System.out.println("You're verified Mr/s." + name);
+        if (policy!=null) {
+            Customer customer = CustomerManagementModule.customerList.get(policy.getCustomerId());
+            System.out.println("You're verified Mr/s." + customer.getFullName());
             return true;
         } else {
             System.out.println("Invalid information!!");
         }
         return false;
     }
+    public Boolean verifyPolicy(int id) {
+        Customer customer = CustomerManagementModule.customerList.get(id);
+
+        if (customer!=null) {
+            System.out.println("You're verified Mr/s." + customer.getFullName());
+            return true;
+        } else {
+            System.out.println("Invalid information!!");
+        }
+        return false;
+    }
+
+    public void listPolicy(){
+        CustomerManagementModule cm = new CustomerManagementModule();
+        System.out.print("Enter id:");
+        int id = scanner.nextInt();
+        if(cm.verifyCustomer(id)){
+            Customer customer = CustomerManagementModule.customerList.get(id);
+            System.out.println("\n\u001B[4mPolicy holder: " + customer.getFullName() + "\u001B[0m");
+//            System.out.println("\nPolicy holder: "+customer.getFullName());
+            for(Map.Entry<String,Policy> map : policyList.entrySet()){
+                Policy policy = map.getValue();
+                if(id == policy.getCustomerId()){
+                    System.out.println( "\nPolicy type : "+policy.getPolicyType()+"\nPolicy Number : "+policy.getPolicyNumber()+
+                     "\nStart date : "+policy.getStartDate()+"\nEnd date : "+policy.getExpireDate());
+                }
+                else{
+                    System.out.println("No policy found");
+                }
+            }
+        }
+        else{
+            System.out.println("Id not found");
+        }
+
+
+    }
+
+
 }

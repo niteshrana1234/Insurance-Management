@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
 
         while (true) {
-            System.out.println("Select module: \n1.Admin \n2.Client \n3.Exit");
+            System.out.println("\nSelect module: \n1.Admin \n2.Client \n3.Exit");
             int module = scanner.nextInt();
             switch (module) {
                 case 1:
@@ -79,7 +79,12 @@ public class Main {
                                     claimManagementModule.claimStatus();
                                     break;
                                 case 6:
+                                    policyManagementModule.listPolicy();
+                                    break;
+
+                                case 7:
                                     break innerLoop;
+
                                 default:
                                     System.out.println("Invalid input");
                             }
@@ -90,7 +95,7 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.exit(1);
+                    System.exit(0);
 
                 default:
                     System.out.println("Invalid input");

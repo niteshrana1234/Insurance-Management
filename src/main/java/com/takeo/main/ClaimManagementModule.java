@@ -10,7 +10,6 @@ import java.util.*;
 
 public class ClaimManagementModule {
     LocalDate today = LocalDate.now();
-    LocalDate expirationDate = today.plusYears(1);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     Scanner scanner = new Scanner(System.in);
     public static Map<String, Claim> claimList = new HashMap<>();
@@ -35,7 +34,6 @@ public class ClaimManagementModule {
             return true;
         } else {
             System.out.println("Invalid information!!");
-            System.exit(1);
         }
         return false;
     }
@@ -48,36 +46,34 @@ public class ClaimManagementModule {
 
     public void fileClaim() {
 
-        System.out.println("Enter Id:");
+        System.out.print("\nEnter Id:");
         int id = scanner.nextInt();
-        System.out.println("Enter policy number:");
+        System.out.print("Enter policy number:");
         String policyNum = scanner.next();
 
         String dateFilled = today.format(formatter);
         boolean claimStatus = false;
         if (verifyCustomer(id, policyNum)) {
-            System.out.println("Enter claim amount: ");
+            System.out.print("Enter claim amount: ");
             int claimAmt = scanner.nextInt();
             Claim claim = new Claim(id, policyNum, claimAmt, dateFilled, claimStatus);
             saveClaim(claim);
             System.out.println("Claim filled successfully \nClaim number : " + claim.getClaimNumber());
-        } else {
-            System.out.println("Invalid information");
         }
 
     }
 
     public void updateClaim() {
-        System.out.println("Enter Id:");
+        System.out.print("\nEnter Id:");
         int id = scanner.nextInt();
-        System.out.println("Enter policy number:");
+        System.out.print("Enter policy number:");
         String policyNum = scanner.next();
 
         if (verifyCustomer(id, policyNum)) {
             for (Map.Entry<String, Claim> map : claimList.entrySet()) {
                 if (policyNum.equals(map.getValue().getPolicyNumber())) {
                     Claim claim = claimList.get(map.getKey());
-                    System.out.println("Enter claim amount: ");
+                    System.out.print("Enter claim amount: ");
                     int claimAmt = scanner.nextInt();
                     claim.setClaimAmount(claimAmt);
                     System.out.println("Claim filled updated \nClaim number : " + claim.getClaimNumber() + ", Claim amount : " + claim.getClaimAmount());
@@ -90,9 +86,9 @@ public class ClaimManagementModule {
     }
 
     public void deleteClaim() {
-        System.out.println("Enter Id:");
+        System.out.print("\nEnter Id:");
         int id = scanner.nextInt();
-        System.out.println("Enter policy number:");
+        System.out.print("Enter policy number:");
         String policyNum = scanner.next();
         if (verifyCustomer(id, policyNum)) {
             for (Map.Entry<String, Claim> map : claimList.entrySet()) {
@@ -121,9 +117,9 @@ public class ClaimManagementModule {
     }
 
     public void claimStatus() {
-        System.out.println("Enter Id:");
+        System.out.print("\nEnter Id:");
         int id = scanner.nextInt();
-        System.out.println("Enter policy number:");
+        System.out.print("Enter policy number:");
         String policyNum = scanner.next();
         if (verifyCustomer(id, policyNum)) {
             for (Map.Entry<String, Claim> map : claimList.entrySet()) {
@@ -135,6 +131,9 @@ public class ClaimManagementModule {
                         System.out.println("Claim status : Processed");
                     }
                 }
+                else{
+                    System.out.println("No claims filled yet");
+                }
             }
         } else {
             System.out.println("Invalid information");
@@ -143,9 +142,9 @@ public class ClaimManagementModule {
     }
 
     public void ModifyStatus() {
-        System.out.println("Enter Id:");
+        System.out.print("\nEnter Id:");
         int id = scanner.nextInt();
-        System.out.println("Enter policy number:");
+        System.out.print("Enter policy number:");
         String policyNum = scanner.next();
         if (verifyCustomer(id, policyNum)) {
             for (Map.Entry<String, Claim> map : claimList.entrySet()) {
