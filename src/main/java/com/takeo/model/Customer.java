@@ -20,14 +20,14 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String fullName, String phoneNumber, String dateOfBirth, Address address,String password) {
+    public Customer(String fullName, String phoneNumber,String emailAddress, String dateOfBirth, Address address,String password) {
         this.customerId = nextId++;
         this.fullName = fullName;
-        this.customerId = customerId;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.password = password;
+        this.emailAddress = emailAddress;
 
     }
 
@@ -86,6 +86,7 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
 
 

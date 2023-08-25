@@ -69,4 +69,11 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public String toString(){
+
+        return  " "+buildingNumber+" "+street+", "+city+", "+state+", "+postalCode+", "+ country;
+
+
+    }
 }

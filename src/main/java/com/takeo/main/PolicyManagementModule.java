@@ -153,7 +153,7 @@ public class PolicyManagementModule {
             for(Map.Entry<String,Policy> map : policyList.entrySet()){
                 Policy policy = map.getValue();
                 if(id == policy.getCustomerId()){
-                    System.out.println( "\nPolicy type : "+policy.getPolicyType()+"\nPolicy Number : "+policy.getPolicyNumber()+
+                    System.out.println( "Policy type : "+policy.getPolicyType()+"\nPolicy Number : "+policy.getPolicyNumber()+
                      "\nStart date : "+policy.getStartDate()+"\nEnd date : "+policy.getExpireDate());
                 }
                 else{

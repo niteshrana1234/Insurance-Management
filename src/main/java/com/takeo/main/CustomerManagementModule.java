@@ -14,7 +14,7 @@ public class CustomerManagementModule {
 
     public void addCustomer(Customer customer) {
         customerList.put(customer.getCustomerId(), customer);
-        System.out.println("Name : "+customer.getFullName() + ", Customer ID : "+customer.getCustomerId());
+        System.out.println("Name : " + customer.getFullName() + ", Customer ID : " + customer.getCustomerId());
     }
 
     public Customer customerInput() {
@@ -32,7 +32,7 @@ public class CustomerManagementModule {
         Address address = custom.addressInput();
         System.out.print("Set password:");
         String password = scanner.nextLine();
-        return new Customer(name, phoneNumber, dateOfBirth, address,password);
+        return new Customer(name, phoneNumber, emailAddress,dateOfBirth, address, password);
 
     }
 
@@ -62,11 +62,11 @@ public class CustomerManagementModule {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter Customer Id:");
         int input = scanner.nextInt();
-        if(verifyCustomer(input)){
+        if (verifyCustomer(input)) {
             Customer selectedCustomer = customerList.get(input);
             customerList.remove(input);
             System.out.println(selectedCustomer.getFullName() + " has been removed from the list!!");
-        } else{
+        } else {
             System.out.println("Customer ID not found");
         }
 
@@ -77,7 +77,7 @@ public class CustomerManagementModule {
 
         System.out.println("\nEnter Customer ID:");
         int input = scanner.nextInt();
-        if(verifyCustomer(input)){
+        if (verifyCustomer(input)) {
             Customer selectClient = customerList.get(input);
             scanner.nextLine();
             System.out.println("\u001B[4mChange Of Information\u001B[0m ");
@@ -95,42 +95,42 @@ public class CustomerManagementModule {
             selectClient.setEmailAddress(emailAddress);
             Address address = addressInput();
             selectClient.setAddress(address);
-        } else{
+        } else {
             System.out.println("No matched ID found");
         }
 
     }
 
-    public void listOfCustomer() {
-        int num = 1;
-        System.out.println("\u001B[4mlists of Customer:\u001B[0m ");
-        for (Map.Entry<Integer,Customer> map : customerList.entrySet()) {
-            Customer customer = map.getValue();
-            System.out.println(num + "." + customer.getFullName());
-            num++;
-        }
+    public void customerDetails() {
+        System.out.print("Enter id:");
+        int id = scanner.nextInt();
+        Customer customer = customerList.get(id);
+        String formattedText = "\u001B[4m" + customer.getFullName() +"\u001B[0m ";
+        System.out.println("\n"+formattedText+ "\nAddress:" + customer.getAddress()+"\nEmail : " + customer.getEmailAddress() + "\nDate of birth(MMDDYYY) : " + customer.getDateOfBirth() + "\nContact :" + customer.getPhoneNumber());
     }
 
     public Boolean verifyCustomer(int id) {
         boolean check = false;
-        if(customerList.containsKey(id)){
+        if (customerList.containsKey(id)) {
             return true;
         }
         return check;
     }
+
     public Boolean customerLogin() {
         System.out.print("\nEnter id:");
         int id = scanner.nextInt();
         System.out.print("Enter password:");
         String pass = scanner.next();
         Customer customer = customerList.get(id);
-        if(customer!=null){
+        if (customer != null) {
             if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
                 System.out.println("Login successful!!");
                 return true;
+            }
         }
-        }
-            return false;
+        return false;
     }
+
 
 }

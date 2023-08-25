@@ -9,8 +9,8 @@ public class Menu {
     }
 
     public static void clientMenu(){
-        System.out.println("\n1.Edit customer information \n2.Buy policy \n3.Edit policy " +
-                "\n4.File a claim \n5.Check claim status \n6.View policy details \n7.Go to main menu");
+        System.out.println("\n1.Edit customer information \n2.Show customer's details\n3.Buy policy \n4.Edit policy " +
+                "\n5.File a claim \n6.Check claim status \n7.View policy details \n8.Go to main menu");
         System.out.print("Enter your choice:");
     }
 

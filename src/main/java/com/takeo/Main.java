@@ -67,24 +67,31 @@ public class Main {
                                     break;
 
                                 case 2:
-                                    policyManagementModule.addPolicy();
+                                    customerManagementModule.customerDetails();
                                     break;
                                 case 3:
-                                    policyManagementModule.modifyPolicy();
+
+                                    policyManagementModule.addPolicy();
                                     break;
                                 case 4:
-                                    claimManagementModule.fileClaim();
+
+                                    policyManagementModule.modifyPolicy();
                                     break;
                                 case 5:
-                                    claimManagementModule.claimStatus();
+
+                                    claimManagementModule.fileClaim();
                                     break;
                                 case 6:
-                                    policyManagementModule.listPolicy();
+
+                                    claimManagementModule.claimStatus();
                                     break;
 
                                 case 7:
-                                    break innerLoop;
 
+                                policyManagementModule.listPolicy();
+                                break;
+
+                                case 8:break innerLoop;
                                 default:
                                     System.out.println("Invalid input");
                             }
