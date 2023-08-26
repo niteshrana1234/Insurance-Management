@@ -35,7 +35,7 @@ public class Main {
                             int input = scanner.nextInt();
                             switch (input) {
                                 case 1:
-                                    customerManagementModule.addCustomer(customerManagementModule.customerInput());
+                                    customerManagementModule.saveCustomer(customerManagementModule.customerInput());
                                     break;
 
                                 case 2:

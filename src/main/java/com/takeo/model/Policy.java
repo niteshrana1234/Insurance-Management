@@ -4,12 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Policy {
+
+    //Declaring variable
     private String policyNumber;
     private String policyType;
     private String startDate;
     private String expireDate;
     private int customerId;
 
+    //Parameterized constructor
     public Policy(int customerId, String policyType, String startDate, String expireDate) {
         this.policyType = policyType;
         this.startDate = startDate;
@@ -17,10 +20,12 @@ public class Policy {
         this.customerId = customerId;
     }
 
+    //Default constructor
     public int getCustomerId() {
         return customerId;
     }
 
+    //Getters and setters
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }

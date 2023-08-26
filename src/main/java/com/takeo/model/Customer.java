@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
+   //Declaring variable
     private String fullName;
     private int customerId;
     private static int nextId = 1;
@@ -16,9 +17,11 @@ public class Customer {
     private String password;
 
 
-
+    //Default constructor
     public Customer() {
     }
+
+    //Parameterized constructor
 
     public Customer(String fullName, String phoneNumber,String emailAddress, String dateOfBirth, Address address,String password) {
         this.customerId = nextId++;
@@ -31,6 +34,7 @@ public class Customer {
 
     }
 
+    //Getters and setters
     public String getFullName() {
         return fullName;
     }

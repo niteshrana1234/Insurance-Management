@@ -2,8 +2,8 @@ package com.takeo.model;
 
 
 public class Claim {
+    //Declaring variable
     private int customerId;
-
     private String policyNumber;
     private String claimNumber;
     private String dateFilled;
@@ -11,11 +11,10 @@ public class Claim {
     private int claimAmount;
     boolean claimStatus = false;
 
+    //Default constructor
     public Claim() {
-    }
-
-    ;
-
+    };
+//Parameterized constructor
     public Claim(int customerId, String policyNumber, int claimAmount, String dateFilled, boolean claimStatus) {
         this.customerId = customerId;
         this.policyNumber = policyNumber;
@@ -24,6 +23,7 @@ public class Claim {
         this.claimAmount = claimAmount;
     }
 
+    //Getters and setters
     public int getCustomerId() {
         return customerId;
     }

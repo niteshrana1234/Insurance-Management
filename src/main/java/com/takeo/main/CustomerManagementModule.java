@@ -9,14 +9,24 @@ import static com.takeo.main.PolicyManagementModule.scanner;
 
 public class CustomerManagementModule {
 
+    /**
+     * Map with key as Integer, Value as Customer
+     */
     public static Map<Integer, Customer> customerList = new HashMap<>();
 
-
-    public void addCustomer(Customer customer) {
+    /**
+     * This method takes Customer object and put in map with id as key
+     * @param customer
+     */
+    public void saveCustomer(Customer customer) {
         customerList.put(customer.getCustomerId(), customer);
         System.out.println("Name : " + customer.getFullName() + ", Customer ID : " + customer.getCustomerId());
     }
 
+    /**
+     * This method take user input and create customer
+     * @return
+     */
     public Customer customerInput() {
         CustomerManagementModule custom = new CustomerManagementModule();
         Scanner scanner = new Scanner(System.in);
@@ -36,6 +46,10 @@ public class CustomerManagementModule {
 
     }
 
+    /**
+     *This method takes user input for address
+     * @return
+     */
     public Address addressInput() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("********************************************");
@@ -58,6 +72,9 @@ public class CustomerManagementModule {
         return address;
     }
 
+    /**
+     * This method removes customer from hashmap
+     */
     public void removeCustomer() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter Customer Id:");
@@ -72,6 +89,9 @@ public class CustomerManagementModule {
 
     }
 
+    /**
+     * This method allows to edit customer personal information
+     */
     public void modifyCustomerInfo() {
         Scanner scanner = new Scanner(System.in);
 
@@ -101,6 +121,9 @@ public class CustomerManagementModule {
 
     }
 
+    /**
+     * This method retrieve details of customer
+     */
     public void customerDetails() {
         System.out.print("Enter id:");
         int id = scanner.nextInt();
@@ -109,6 +132,11 @@ public class CustomerManagementModule {
         System.out.println("\n"+formattedText+ "\nAddress:" + customer.getAddress()+"\nEmail : " + customer.getEmailAddress() + "\nDate of birth(MMDDYYY) : " + customer.getDateOfBirth() + "\nContact :" + customer.getPhoneNumber());
     }
 
+    /**
+     * This method takes int in parameter and checks if id exist in map
+     * @param id
+     * @return
+     */
     public Boolean verifyCustomer(int id) {
         boolean check = false;
         if (customerList.containsKey(id)) {
@@ -117,6 +145,12 @@ public class CustomerManagementModule {
         return check;
     }
 
+    /**
+     * This method allows user to enter id and password
+     * and grants customer menu only if id and password match
+     * Each customer has unique id and password
+     * @return
+     */
     public Boolean customerLogin() {
         System.out.print("\nEnter id:");
         int id = scanner.nextInt();
