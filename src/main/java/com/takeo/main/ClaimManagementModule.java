@@ -76,7 +76,7 @@ public class ClaimManagementModule {
                     System.out.print("Enter claim amount: ");
                     int claimAmt = scanner.nextInt();
                     claim.setClaimAmount(claimAmt);
-                    System.out.println("Claim filled updated \nClaim number : " + claim.getClaimNumber() + ", Claim amount : " + claim.getClaimAmount());
+                    System.out.println("\nClaim filled updated \nClaim number : " + claim.getClaimNumber() + ", Claim amount : " + claim.getClaimAmount());
                 }
             }
         } else {
@@ -107,14 +107,27 @@ public class ClaimManagementModule {
     }
 
     public void listClaim() {
-        for (Map.Entry<String, Claim> map : claimList.entrySet()) {
-            Claim claim = map.getValue();
-            int customerId = map.getValue().getCustomerId();
-            Customer customer = CustomerManagementModule.customerList.get(customerId);
-            System.out.println("Name : " + customer.getFullName() + ", Claim number : " + claim.getClaimNumber() + ", Claim amount : " + claim.getClaimAmount());
-        }
+        System.out.println("\nEnter claim id:");
+        String claimId = scanner.next();
+            Claim claim = claimList.get(claimId);
+            String claimStatus = "";
 
-    }
+            if(claim!=null){
+                if(claim.getClaimStatus()){
+                    claimStatus = ", Status : approved";
+                }
+                else{
+                    claimStatus = ", Status : processed";
+                }
+                Customer customer = CustomerManagementModule.customerList.get(claim.getCustomerId());
+                System.out.println("Name : " + customer.getFullName() + ", Claim number : " + claim.getClaimNumber() +
+                        ", Claim amount : " + claim.getClaimAmount() + claimStatus);
+            }
+            else{
+                System.out.println("No claim found");
+            }
+
+            }
 
     public void claimStatus() {
         System.out.print("\nEnter Id:");
@@ -132,7 +145,7 @@ public class ClaimManagementModule {
                     }
                 }
                 else{
-                    System.out.println("No claims filled yet");
+                    System.out.println("No claims filled");
                 }
             }
         } else {

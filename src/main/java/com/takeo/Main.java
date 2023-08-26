@@ -47,9 +47,14 @@ public class Main {
                                     break;
 
                                 case 4:
-                                    claimManagementModule.ModifyStatus();
+                                    claimManagementModule.deleteClaim();
+
                                     break;
                                 case 5:
+                                    claimManagementModule.ModifyStatus();
+                                    break;
+
+                                case 6:
                                     break innerLoop;
 
                             }
@@ -78,20 +83,27 @@ public class Main {
                                     policyManagementModule.modifyPolicy();
                                     break;
                                 case 5:
-
                                     claimManagementModule.fileClaim();
                                     break;
                                 case 6:
-
-                                    claimManagementModule.claimStatus();
+                                    claimManagementModule.updateClaim();
                                     break;
 
                                 case 7:
+                                    claimManagementModule.claimStatus();
+                                    break;
 
-                                policyManagementModule.listPolicy();
-                                break;
+                                case 8:
+                                    policyManagementModule.listPolicy();
+                                    break;
 
-                                case 8:break innerLoop;
+
+                                case 9:
+                                    claimManagementModule.listClaim();
+                                    break;
+
+                                case 10:
+                                    break innerLoop;
                                 default:
                                     System.out.println("Invalid input");
                             }
