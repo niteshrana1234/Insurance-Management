@@ -4,11 +4,12 @@ import com.takeo.main.PolicyManagementModule;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Customer {
-   //Declaring variable
+    //Declaring variable
     private String fullName;
-    private int customerId;
+    private String customerId;
     private static int nextId = 1;
     private String phoneNumber;
     private String dateOfBirth;
@@ -23,15 +24,15 @@ public class Customer {
 
     //Parameterized constructor
 
-    public Customer(String fullName, String phoneNumber,String emailAddress, String dateOfBirth, Address address,String password) {
-        this.customerId = nextId++;
+    public Customer(String fullName, String phoneNumber, String emailAddress, String dateOfBirth, Address address, String password) {
+        int num = new Random().nextInt(100);
+        this.customerId = fullName.substring(0, 1).toUpperCase() + fullName.substring(2, 3).toUpperCase() + num;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.password = password;
         this.emailAddress = emailAddress;
-
     }
 
     //Getters and setters
@@ -43,11 +44,11 @@ public class Customer {
         this.fullName = fullName;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 

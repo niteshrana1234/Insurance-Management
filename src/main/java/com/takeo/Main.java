@@ -62,7 +62,8 @@ public class Main {
                     }
                     break;
                 case 2:
-                    if (customerManagementModule.customerLogin()) {
+                    boolean goo = true;
+                    if (goo) { //customerManagementModule.customerLogin()
                         innerLoop:
                         while (true) {
                             Menu.clientMenu();

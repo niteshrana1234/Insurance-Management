@@ -12,7 +12,7 @@ public class CustomerManagementModule {
     /**
      * Map with key as Integer, Value as Customer
      */
-    public static Map<Integer, Customer> customerList = new HashMap<>();
+    public static Map<String, Customer> customerList = new HashMap<>();
 
     /**
      * This method takes Customer object and put in map with id as key
@@ -20,6 +20,8 @@ public class CustomerManagementModule {
      */
     public void saveCustomer(Customer customer) {
         customerList.put(customer.getCustomerId(), customer);
+        System.out.println("");
+        System.out.println("Account Registered Successfully !!!");
         System.out.println("Name : " + customer.getFullName() + ", Customer ID : " + customer.getCustomerId());
     }
 
@@ -126,7 +128,7 @@ public class CustomerManagementModule {
      */
     public void customerDetails() {
         System.out.print("Enter id:");
-        int id = scanner.nextInt();
+        String id = scanner.next();
         Customer customer = customerList.get(id);
         String formattedText = "\u001B[4m" + customer.getFullName() +"\u001B[0m ";
         System.out.println("\n"+formattedText+ "\nAddress:" + customer.getAddress()+"\nEmail : " + customer.getEmailAddress() + "\nDate of birth(MMDDYYY) : " + customer.getDateOfBirth() + "\nContact :" + customer.getPhoneNumber());
@@ -153,13 +155,13 @@ public class CustomerManagementModule {
      */
     public Boolean customerLogin() {
         System.out.print("\nEnter id:");
-        int id = scanner.nextInt();
+        String id = scanner.next();
         System.out.print("Enter password:");
         String pass = scanner.next();
         Customer customer = customerList.get(id);
         if (customer != null) {
             if (customer.getCustomerId() == id && customer.getPassword().equals(pass)) {
-                System.out.println("Login successful!!");
+                System.out.println("\n"+"Login successful !!!");
                 return true;
             }
         }
